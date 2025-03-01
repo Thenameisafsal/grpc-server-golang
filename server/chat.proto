@@ -1,0 +1,16 @@
+syntax = "proto3";
+package chat;
+option go_package = "/chat;chat";
+message Message {
+    string content = 1; // this will be the first possession
+}
+
+service ChatService {
+    // the method - we define grpc methods using keyword rpc
+    // args are defined with structs like above
+    // return type is specified with the 'returns' keyword
+    rpc SayHello(Message) returns (Message) {}
+}
+
+// protoc --go_out=. --go-grpc_out=. chat/chat.proto to run the protoc.
+// this will generate the code to chat directory based on the chat.proto definitions
